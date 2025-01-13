@@ -31,37 +31,43 @@ function Calc() {
     setButtonhandler(false);
   }
   return (
-    <>
+    <div className="content">
       <div className="buttons">
         <button onClick={handleSmallButton}>Small</button>
         <button onClick={handleBigButton}>Big</button>
       </div>
-      <MatsPrices
-        handleEternalEarth={handleEternalEarth}
-        handleSmallGem={handleSmallGem}
-      />
-      <EnchPrices
-        handleIdust={handleIdust}
-        handleGreatercosmic={handleGreatercosmic}
-        handleDreamshard={handleDreamshard}
-      />
-      {buttonhandler == true ? (
-        <SmallItem
-          idust={idust}
-          greatercosmic={greatercosmic}
-          dreamshard={dreamshard}
-          eternalEarth={eternalEarth}
-          smallGem={smallGem}
+      <div className="matsprices">
+        <MatsPrices
+          handleEternalEarth={handleEternalEarth}
+          handleSmallGem={handleSmallGem}
         />
-      ) : (
-        <Bigitem
-          idust={idust}
-          greatercosmic={greatercosmic}
-          dreamshard={dreamshard}
-          eternalEarth={eternalEarth}
+      </div>
+      <div className="enchprices">
+        <EnchPrices
+          handleIdust={handleIdust}
+          handleGreatercosmic={handleGreatercosmic}
+          handleDreamshard={handleDreamshard}
         />
-      )}
-    </>
+      </div>
+      <div className="profit">
+        {buttonhandler == true ? (
+          <SmallItem
+            idust={idust}
+            greatercosmic={greatercosmic}
+            dreamshard={dreamshard}
+            eternalEarth={eternalEarth}
+            smallGem={smallGem}
+          />
+        ) : (
+          <Bigitem
+            idust={idust}
+            greatercosmic={greatercosmic}
+            dreamshard={dreamshard}
+            eternalEarth={eternalEarth}
+          />
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -124,7 +130,14 @@ function SmallItem({
   const result =
     idust * 2.5 * 0.74 + (greatercosmic / 2) * 0.23 + (dreamshard / 3) * 0.3;
   const ahTax = result * 0.05;
-  return <>Profit = {(result - ahTax - matsprice).toFixed(2)} g</>;
+  return (
+    <>
+      <div className="smallitemprofit">
+        <p>Profit = {(result - matsprice).toFixed(2)} g</p>
+        <p>Profit (AH tax 5%) = {(result - ahTax - matsprice).toFixed(2)} g</p>
+      </div>
+    </>
+  );
 }
 
 function Bigitem({ idust, greatercosmic, dreamshard, eternalEarth }) {
@@ -132,7 +145,17 @@ function Bigitem({ idust, greatercosmic, dreamshard, eternalEarth }) {
   const result =
     idust * 5.5 * 0.74 + greatercosmic * 1.5 * 0.23 + dreamshard * 0.3;
   const ahTax = result * 0.05;
-  return <>Profit = {(result - ahTax - matsprice).toFixed(2)} g</>;
+  console.log(matsprice);
+  console.log(result);
+  console.log(ahTax);
+  return (
+    <>
+      <div className="bigitemprofit">
+        <p>Profit = {(result - matsprice).toFixed(2)} g</p>
+        <p>Profit (AH tax 5%) = {(result - ahTax - matsprice).toFixed(2)} g</p>
+      </div>
+    </>
+  );
 }
 
 export default Calc;
