@@ -18,3 +18,18 @@ form,
   justify-content: center;
   gap: 5px;
 }
+.matsprices {
+  max-width: 100vw;
+}
+.prospectingForm {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 10px;
+}
+.CobaltProfit,
+.SaroniteProfit {
+  border: 1px solid black;
+  padding: 5px 20px;
+  margin: 10px;
+}
