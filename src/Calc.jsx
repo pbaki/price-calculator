@@ -403,27 +403,12 @@ function ProspectingResult({
     smallGem * 3 * 0.23;
 
   const ahTaxCobalt = resultCobalt * 0.05;
-  const PostTaxCobalt =
-    ShadowCrystal +
-    0.0375 * 0.23 +
-    Chalcedony +
-    0.0375 * 0.23 +
-    DarkJade +
-    0.0375 * 0.23 +
-    MonarchTopaz +
-    0.45 * 0.013 +
-    ForestEmerald +
-    0.45 * 0.013 +
-    SkySapphire +
-    0.45 * 0.013 +
-    AutumnsGlow +
-    0.45 * 0.013 +
-    ScarletRuby +
-    0.45 * 0.013 +
-    TwilightOpal +
-    0.45 * 0.013 +
-    smallGem +
-    0.0375 * 3 * 0.23;
+  const PostTaxCobalt = 0.0375 * 6 * 0.23 + 0.45 * 6 * 0.013;
+  console.log(resultCobalt);
+  console.log(matspriceCobalt);
+  console.log(ahTaxCobalt);
+  console.log(PostTaxCobalt);
+
   const matspriceSaronite = Saronite * 5;
   const resultSaronite =
     ShadowCrystal * 0.18 +
@@ -438,27 +423,7 @@ function ProspectingResult({
     smallGem * 3 * 0.18;
 
   const ahTaxSaronite = resultSaronite * 0.05;
-  const PostTaxSaronite =
-    ShadowCrystal +
-    0.0375 * 0.18 +
-    Chalcedony +
-    0.0375 * 0.18 +
-    DarkJade +
-    0.0375 * 0.18 +
-    MonarchTopaz +
-    0.45 * 0.04 +
-    ForestEmerald +
-    0.45 * 0.04 +
-    SkySapphire +
-    0.45 * 0.04 +
-    AutumnsGlow +
-    0.45 * 0.04 +
-    ScarletRuby +
-    0.45 * 0.04 +
-    TwilightOpal +
-    0.45 * 0.04 +
-    smallGem +
-    0.0375 * 3 * 0.18;
+  const PostTaxSaronite = 0.0375 * 6 * 0.18 + 0.45 * 6 * 0.04;
 
   return (
     <>
@@ -466,7 +431,15 @@ function ProspectingResult({
         <p>Cobalt Profit = {(resultCobalt - matspriceCobalt).toFixed(2)} g</p>
         <p>
           Cobalt Profit (AH tax 5% + 12h auction) ={" "}
-          {resultCobalt == 0 ? 0 : (PostTaxCobalt - ahTaxCobalt).toFixed(2)} g
+          {resultCobalt == 0
+            ? 0
+            : (
+                resultCobalt -
+                matspriceCobalt -
+                PostTaxCobalt -
+                ahTaxCobalt
+              ).toFixed(2)}{" "}
+          g
         </p>
       </div>
       <div className="SaroniteProfit">
@@ -477,7 +450,12 @@ function ProspectingResult({
           Saronite Ore Profit (AH tax 5% + 12h auction) ={" "}
           {resultSaronite == 0
             ? 0
-            : (PostTaxSaronite - ahTaxSaronite).toFixed(2)}{" "}
+            : (
+                resultSaronite -
+                matspriceSaronite -
+                PostTaxSaronite -
+                ahTaxSaronite
+              ).toFixed(2)}{" "}
           g
         </p>
       </div>
